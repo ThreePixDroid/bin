@@ -11,7 +11,7 @@ canvas {
   background: #000;
 }
 
-/* #container {
+#container {
   padding: 90px;
   position: relative;
   top: 50px;
@@ -19,4 +19,14 @@ canvas {
   background: #3366ff;
   width: 50vw;
   height: 50vh;
-} */
+}
+
+#container2 {
+  padding: 90px;
+  position: relative;
+  bottom: 50px;
+  right: 90px;
+  background: #3366ff;
+  width: 50vw;
+  height: 50vh;
+}

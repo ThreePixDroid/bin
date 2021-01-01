@@ -2,14 +2,14 @@
 export class Tool {
   constructor() {
     this.config = {
-      //general
+      //general settings
       x: 0,
       y: 0,
       fillColor: `red`,
       strokeColor: `Yellow`,
       fill: true,
       strok: false,
-      //rect
+      //rect settings
       clear: true,
       w: 200,
       h: 200,

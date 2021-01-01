@@ -1,7 +1,6 @@
+//
 export class Tool {
   constructor() {
-    this.TWO_PI = Math.PI * 2;
-
     this.config = {
       //general
       x: 0,
@@ -10,35 +9,27 @@ export class Tool {
       strokeColor: `Yellow`,
       fill: true,
       strok: false,
-      //text
-      fontFamaly: `Consolas`,
-      mainText: `venom`,
-      textMaxWidth: 500,
-      textMaxHeight: 200,
-      textMinWidth: 120,
-      textMinHeight: 20,
       //rect
       clear: true,
       w: 200,
       h: 200,
     }
   }
-  // (text, fontSize) {
-  //   const ratio = this.w / this.context.measureText(text).width;
-  //   this.drawParametres.fontSize = fontSize * ratio | 0;
-
-  //   if (this.drawParametres.fontSize > this.h) {
-  //     this.drawParametres.fontSize = this.h;
-  //   }
-
-  //   this.context.font = `${this.drawParametres.fontSize}px Arial black`;
-  // }
-  
-  text(c, p = this.config) {
-    c.fillText(p.mainText, p.x, p.y)
-    
+  assign(_p) {
+    return Object.assign({}, this.config, _p)
   }
-  rect(c, p = this.config) {
-    this.context.clearRect(0, 0, this.w, this.h);
+  rect(_c, _p) {
+    const p = this.assign(_p);
+
+    
+    if (p.fill) {
+      _c.fillStyle = p.color;
+      _c.fillRect(p.x, p.y, p.w, p.h);
+    }
+
+    if (p.stroke) {
+      _c.strokeStyle = p.color;
+      _c.strokeRect(p.x, p.y, p.w, p.h);
+    }
   }
 }

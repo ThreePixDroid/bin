@@ -1,26 +1,25 @@
 export class Layer {
-  //create Canvas element
-  canvas = document.createElement(`canvas`);
-  //get 2d tools to Draw 
-  context = this.canvas.getContext(`2d`);
-  
-  constructor(container) {
+  constructor(container) {  
+    
     this.addToContainer(container);
-    this.fitToContainer();
+    this.fitToContainer(this.canvas);
+    addEventListener(`resize`, () => this.fitToContainer(this.canvas));
   }
-  //add Canvas to Container
-  addToContainer(container) {
+  addNewCanvasElement() {
+    //create Canvas element
+    this.canvas = document.createElement(`canvas`);
+    //get access to 2d tools to Draw 
+    context = this.canvas.getContext(`2d`);
+    //add Canvas to Container
     container.appendChild(this.canvas);
   }
   //fit Canvas to container
   fitToContainer(cnv) {
-    cnv.style.width = '100%';
-    cnv.style.height = '100%';
     cnv.width  = cnv.offsetWidth;
     cnv.height = cnv.offsetHeight;
   }
   //get Canvas as an image
-  get image() {
-    return this.canvas.toDataURL();
-  }
+  // get image() {
+  //   return this.canvas.toDataURL();
+  // }
 }

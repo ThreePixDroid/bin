@@ -20,14 +20,6 @@ class App {
     });
   }
 
-  // refresh() {
-    
-  // }
-
-  // display() {
-
-  // }
-
   animate() {
     requestAnimationFrame(() => this.animate());
     this.tool.clear(this.layer.context, this.layer);

@@ -8,43 +8,47 @@ export class Tool {
       y: 0,
       w: 200, //width
       h: 200, //height
-      // minW: 0,
-      // minH: 0,
-      // maxW: 0,
-      // maxH: 0,
-      fillColor: `red`,
-      strokeColor: `Yellow`,
       fill: true,
       strok: false, 
+      fillColor: `red`,
+      strokeColor: `Yellow`,
       //text settings
       text: `Text`,
-      fontStyle: `bold`,
       fontSize: 60,
+      fontStyle: `bold`,
       fontFamaly: `Consolas`,
       textAlign: `center`,
-      textBaseLine: `middle`,
+      textBaseline: `middle`,
       adaptiveText: true,
     }
   }
-  //draw text (_c is canvas 2d Context) (_p is draw configuration)
-  getSizeRatio(targetSize, currentSize, valueToCorrect) {
-    return (targetSize / currentSize) * valueToCorrect;
+  getSizeRatio(targetSize, currentSize) {
+    return (targetSize / currentSize);
   }
-  text(_c, _p) {
+  //prepare text (_c is canvas 2d Context) (_p is draw configuration)
+  prepareText(_c, _p) {
     const p = this.getConfig(_p);
-
+    
     _c.font = `${p.fontStyle} ${p.fontSize}px ${p.fontFamaly}`;
     _c.textAlign = p.textAlign;
-    _c.textBaseline = p.textBaseLine;
+    _c.textBaseline = p.textBaseline;
     
     if (p.adaptiveText) {
       const textW = _c.measureText(p.text).width;
-      p.fontSize = this.getSizeRatio(p.w, textW, p.fontSize) | 0;
+      p.fontSize = p.fontSize * this.getSizeRatio(p.w, textW) | 0;
       
-      if (p.fontSize > p.h) { p.fontSize = p.h; }
+      if (p.fontSize > p.h && p.h != 0) { 
+        p.fontSize = p.h;
+      }
       
       _c.font = `${p.fontStyle} ${p.fontSize}px ${p.fontFamaly}`;
     }
+    
+    return p;
+  }
+  //draw text (_c is canvas 2d Context) (_p is draw configuration)
+  text(_c, _p) {
+    const p = this.prepareText(_c, _p);
     
     if (p.fill) {
       _c.fillStyle = p.fillColor;
@@ -54,19 +58,8 @@ export class Tool {
       _c.strokeStyle = p.strokeColor;
       _c.strokeText(p.text, p.x, p.y);
     }
+
   }
-  //draw rect (_c is canvas 2d Context) (_p is draw configuration)
-  // rect(_c, _p) {
-  //   const p = this.getConfig(_p);
-  //   if (p.fill) {
-  //     _c.fillStyle = p.fillColor;
-  //     _c.fillRect(p.x, p.y, p.w, p.h);
-  //   }
-  //   if (p.stroke) {
-  //     _c.strokeStyle = p.strokeColor;
-  //     _c.strokeRect(p.x, p.y, p.w, p.h);
-  //   }
-  // }
   clear(_c, _p) {
     const p = this.getConfig(_p);
 

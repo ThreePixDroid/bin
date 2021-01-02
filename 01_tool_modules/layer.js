@@ -12,7 +12,7 @@ export class Layer {
   }
   //fit Canvas size to container
   fitToContainer(cnv) {
-    cnv.width = cnv.offsetWidth;
-    cnv.height = cnv.offsetHeight;
+    this.w = cnv.width = cnv.offsetWidth;
+    this.h = cnv.height = cnv.offsetHeight;
   }
 }

@@ -15,8 +15,8 @@ export class Layer {
   }
   //fit Canvas to container
   fitToContainer(cnv) {
-    cnv.width  = cnv.offsetWidth;
-    cnv.height = cnv.offsetHeight;
+    this.w = cnv.width  = cnv.offsetWidth;
+    this.h = cnv.height = cnv.offsetHeight;
   }
   //get Canvas as an image
   // get image() {

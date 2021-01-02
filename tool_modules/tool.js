@@ -1,4 +1,4 @@
-//
+//tool contains a drawing methods based on 2d context from canvas element
 export class Tool {
   constructor() {
     this.config = {

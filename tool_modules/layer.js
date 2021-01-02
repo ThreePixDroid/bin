@@ -11,8 +11,8 @@ export class Layer {
     addEventListener(`resize`, () => this.fitToContainer(this.canvas));
   }
   //fit Canvas size to container
-  fitToContainer(c) {
-    c.width = c.offsetWidth;
-    c.height = c.offsetHeight;
+  fitToContainer(cnv) {
+    cnv.width = cnv.offsetWidth;
+    cnv.height = cnv.offsetHeight;
   }
 }

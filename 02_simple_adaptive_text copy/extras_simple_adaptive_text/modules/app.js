@@ -3,16 +3,26 @@ import { Layer } from './layer.js'
 
 class App {
   constructor(container) {
-    this.layer = new Layer(container);
     this.tool = new Tool();
+    this.layer = new Layer(container);
 
+    this.fps = 2;
+    
     this.prepare();
     this.animate();
-    
-    addEventListener(`resize`, () => this.prepare());
   }
   
   prepare() {
+    this.fpsInterval = 1000 / this.fps | 0;
+    this.then = new Date();
+    this.now = this.then;
+    this.elapsed = this.then;
+
+    this.initText();
+    addEventListener(`resize`, () => this.initText());
+  }
+
+  initText() {
     this.textConfig = {
       x: this.layer.w / 2,
       y: this.layer.h / 2,
@@ -38,8 +48,16 @@ class App {
 
   animate() {
     requestAnimationFrame(() => this.animate());
-    this.tool.clear(this.layer.context, this.layer);
-    this.display();
+
+    this.now = Date.now();
+    this.elapsed = this.now - this.then;
+    
+    if (this.elapsed > this.fpsInterval) {
+      this.then = this.now;
+
+      this.tool.clear(this.layer.context, this.layer);
+      this.display();
+    }
   }
 }
 

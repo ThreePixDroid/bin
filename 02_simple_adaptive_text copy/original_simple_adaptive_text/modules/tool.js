@@ -16,7 +16,7 @@ export class Tool {
       text: `Text`,
       fontSize: 60,
       fontStyle: `bold`,
-      fontFamaly: `Consolas`,
+      fontFamily: `Consolas`,
       textAlign: `center`,
       textBaseline: `middle`,
       adaptiveText: true,

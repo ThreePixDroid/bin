@@ -26,47 +26,50 @@ export class Tool {
     return (targetSize / currentSize);
   }
   //prepare text (_c is canvas 2d Context) (_p is draw configuration)
-  prepareText(_c, _p) {
+  prepareText(c, _p) {
     const p = this.getConfig(_p);
+    this.setFont(c, p);
     
-    _c.font = `${p.fontStyle} ${p.fontSize}px ${p.fontFamaly}`;
-    _c.textAlign = p.textAlign;
-    _c.textBaseline = p.textBaseline;
+    c.textAlign = p.textAlign;
+    c.textBaseline = p.textBaseline;
     
     if (p.adaptiveText) {
-      const textW = _c.measureText(p.text).width;
+      const textW = c.measureText(p.text).width;
       p.fontSize = p.fontSize * this.getSizeRatio(p.w, textW) | 0;
       
       if (p.fontSize > p.h && p.h != 0) { 
         p.fontSize = p.h;
       }
       
-      _c.font = `${p.fontStyle} ${p.fontSize}px ${p.fontFamaly}`;
+      this.setFont(c, p);
     }
     
     return p;
   }
+  setFont(c, p) {
+    c.font = `${p.fontStyle} ${p.fontSize}px ${p.fontFamaly}`;
+  }
   //draw text (_c is canvas 2d Context) (_p is draw configuration)
-  text(_c, _p) {
-    const p = this.prepareText(_c, _p);
+  text(c, _p) {
+    const p = this.prepareText(c, _p);
     
     if (p.fill) {
-      _c.fillStyle = p.fillColor;
-      _c.fillText(p.text, p.x, p.y);
+      c.fillStyle = p.fillColor;
+      c.fillText(p.text, p.x, p.y);
     }
     if (p.stroke) {
-      _c.strokeStyle = p.strokeColor;
-      _c.strokeText(p.text, p.x, p.y);
+      c.strokeStyle = p.strokeColor;
+      c.strokeText(p.text, p.x, p.y);
     }
 
   }
-  clear(_c, _p) {
+  clear(c, _p) {
     const p = this.getConfig(_p);
 
-    _c.clearRect(p.x, p.y, p.w, p.h);
+    c.clearRect(p.x, p.y, p.w, p.h);
   }
   //get draw configuration 
-  getConfig(_p) {
-    return Object.assign({}, this.config, _p)
+  getConfig(p) {
+    return Object.assign({}, this.config, p)
   }
 }

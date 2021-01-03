@@ -6,7 +6,7 @@ class App {
     this.tool = new Tool();
     this.layer = new Layer(container);
 
-    this.fps = 2;
+    this.fps = 50;
     
     this.prepare();
     this.animate();

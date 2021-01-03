@@ -26,7 +26,6 @@ class App {
       y: this.layer.h / 2,
       w: this.layer.w,
       h: this.layer.h,
-      text: `Text`,
     });
   }
 }

@@ -47,7 +47,7 @@ export class Tool {
     return p;
   }
   setFont(c, p) {
-    c.font = `${p.fontStyle} ${p.fontSize}px ${p.fontFamaly}`;
+    c.font = `${p.fontStyle} ${p.fontSize}px ${p.fontFamily}`;
   }
   //draw text (_c is canvas 2d Context) (_p is draw configuration)
   text(c, _p) {

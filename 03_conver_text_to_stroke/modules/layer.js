@@ -1,13 +1,4 @@
-class App {
-  constructor(container) {
-    //create new Canvas element
-    this.layer = new Layer(container);
-    this.layer2 = new Layer(container);
-
-  }
-}
-
-class Layer {
+export class Layer {
   constructor(container) {
     //create new Canvas element
     this.canvas = document.createElement(`canvas`);
@@ -21,13 +12,11 @@ class Layer {
   }
   //fit Canvas size to container
   fitToContainer(cnv) {
-    cnv.width = cnv.offsetWidth;
-    cnv.height = cnv.offsetHeight;
+    this.w = cnv.width = cnv.offsetWidth;
+    this.h = cnv.height = cnv.offsetHeight;
   }
-}
 
-onload = () => {
-  // new App(document.querySelector(`body`));
-  new App(document.querySelector(`#box1`));
-  // new App(document.querySelector(`#box2`));
+  gim() {
+    this.context.getImageData()
+  }
 }

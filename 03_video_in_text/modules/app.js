@@ -57,8 +57,6 @@ class App {
   }
 
   createTextMask(l) {
-    this.tool.gco(l.context, `source-out`);
-    
     this.tool.text(l.context, {
       y: l.h / 2,
       x: l.w / 2,
@@ -68,22 +66,23 @@ class App {
       fontFamily: `Arial`
     });
     
+    this.tool.gco(l.context, `source-out`);
     this.tool.rect(l.context, {
       fillColor: this.textBg,
       w: l.w,
       h: l.h,
     })
 
-    this.tool.gco(l.context, `source-over`);
-    this.tool.text(l.context, {
-      y: l.h / 2,
-      x: l.w / 2,
-      w: l.w,
-      h: l.h,
-      text: this.mainText,
-      fontFamily: `Arial`,
-      fillColor: `rgba(0, 0, 255, 0.2)`
-    });
+    // this.tool.gco(l.context, `source-over`);
+    // this.tool.text(l.context, {
+    //   y: l.h / 2,
+    //   x: l.w / 2,
+    //   w: l.w,
+    //   h: l.h,
+    //   text: this.mainText,
+    //   fontFamily: `Arial`,
+    //   fillColor: `rgba(0, 0, 255, 0.2)`
+    // });
   }
 
   display(l) {

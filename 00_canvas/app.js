@@ -31,3 +31,16 @@ onload = () => {
   new App(document.querySelector(`#box1`));
   // new App(document.querySelector(`#box2`));
 }
+
+const v = [5, 5, 9, 9, 0, 4, 7, 7];
+
+v.map((e, i) => {
+  v.map(z => {
+    if (e == z) {
+      v.splice(i, 1);
+      i--;  
+    }
+  })
+})
+
+console.log(v.length);

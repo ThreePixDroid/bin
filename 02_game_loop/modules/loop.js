@@ -1,23 +1,25 @@
-// loop for game or animation
 export class Loop {
-  constructor(p) {
-    this.lastUpdate = 0;
-    this.deltaTime = 0;         
+  constructor(update, display) {
+    this.update = update;
+    this.display = display;
 
-    this.update  = p.update;
-    this.display = p.display;
-    
-    this.animate = this.animate.bind(this);
+    this.deltaTime = 0;
+    this.lastUpdate = 0;
+    this.maxInterval = 40;
+
+    this.animate = this.animate.bind(this)
     this.animate();
   }
-
   animate(currentTime = 0) {
     requestAnimationFrame(this.animate);
 
     this.deltaTime = currentTime - this.lastUpdate;
-    this.lastUpdate = currentTime; 
-
-    this.update(this.deltaTime);
-    this.display();
+    
+    if (this.deltaTime < this.maxInterval) {
+      this.update(this.deltaTime / 1000);
+      this.display(1000 / this.deltaTime | 0);
+    }
+    
+    this.lastUpdate = currentTime;
   }
 }

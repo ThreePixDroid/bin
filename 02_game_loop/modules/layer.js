@@ -7,12 +7,13 @@ export class Layer {
     //put Canvas to Container
     container.appendChild(this.canvas);
 
-    this.fitToContainer(this.canvas);
-    addEventListener(`resize`, () => this.fitToContainer(this.canvas));
+    this.fitToContainer = this.fitToContainer.bind(this);
+    addEventListener(`resize`, this.fitToContainer); 
+    this.fitToContainer();
   }
   //fit Canvas size to container
-  fitToContainer(cnv) {
-    this.w = cnv.width = cnv.offsetWidth;
-    this.h = cnv.height = cnv.offsetHeight;
+  fitToContainer() {
+    this.w = this.canvas.width = this.canvas.clientWidth  * devicePixelRatio;
+    this.h = this.canvas.height = this.canvas.clientHeight * devicePixelRatio;
   }
 }
